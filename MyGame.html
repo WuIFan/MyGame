@@ -13,6 +13,8 @@
 		</style>
 	</head>
 	<body>
+		<div>score:(PlayerStartY)<span id="score">0</span><span id="test">0</span></div>
+		<div>Health:<span id="health">0</span></div>
 		<canvas id="MyCanvas" width="800" height="500"></canvas>
 		<script>
 			var c=document.getElementById("MyCanvas");
@@ -24,7 +26,7 @@
 			var wallBorder=5;
 			var wallColor="#3A006F";
 
-			var wallWidth=c.width-wallBorder;
+			var wallWidth=c.width-wallBorder;						
 			var wallHeight=c.height-wallBorder;
 
 			//畫出外牆
@@ -35,10 +37,10 @@
 			}
 
 			//邊界
-			var topBound = wallY + wallBorder/2;
-     		var bottomBound = wallY + wallHeight - wallBorder/2;
-      		var leftBound = wallX + wallBorder/2; 
-      		var rightBound = wallX + wallWidth - wallBorder/2;
+			var topBound = wallY + wallBorder;						//5
+     		var bottomBound = wallY + wallHeight - wallBorder;		//490
+      		var leftBound = wallX+wallBorder/2; 					//5
+      		var rightBound = wallX + wallWidth - wallBorder/2;		//2.5+800-5-2.5=795
 
       		var background=new Image()
       		background.src="bg.png";
@@ -49,28 +51,98 @@
       		var unit=10 //移動的單位
 
 			 
-     		var player=new Image();
-     		var player2=new Image();
+     		var player=new Image();//65*87    63*97
+     		var player2=new Image();//75*83
+			var playerwidth=63;
+     		var playerheight=97;
      		var PlayerStartX=50;
-     		var PlayerStartY=408;
-     		var PlayerLeftBound=leftBound;
-     		var PlayerRightBound=rightBound-wallBorder-75;
-     		var PlayerStartXOld=50;
-     		var PlayerStartYOld=408;
+     		var PlayerStartY=500-5-playerheight;
+     		var PlayerLeftBound=leftBound;							//5
+     		var PlayerRightBound=rightBound-playerwidth;			//
+     		var PlayerStartXOld=50;                              	//50,92
+     		var PlayerStartYOld=500-5-playerheight;
+     		
      		var direction=0;
      		player.src="player.png";
      		player2.src="player2.png";
+     		var health=100;
+     		document.getElementById("health").innerHTML=health;
 
+     		var enemy1=new Image();//63*58
+     		var enemy1StartX=700;
+     		var enemy1StartY=437;     		
+     		enemy1.src="enemy1.png";
+     		enemy1.onload=function(){
+     			ctx.drawImage(enemy1,enemy1StartX,enemy1StartY);
+     		}
+
+     		var enemy1attack=new Image();//20*18
+     		var enemy1width=20;
+     		var enemy1height=18;
+
+     		var playerattackboundX1=playerwidth+enemy1width;	 //被攻擊範圍
+     		var playerattackboundY1=playerheight+enemy1height;
+
+
+     		var enemy1attackStartX=enemy1StartX-20;
+     		var enemy1attackStartY=enemy1StartY; 
+     		var enemy1attackStartXold=enemy1attackStartX;
+     		var enemy1attackStartYold=enemy1attackStartY;
+     		enemy1attack.src="enemy1attack.png";
      		
+     		var enemyalive=10;
+     		function round1(enemyalive){
+	     		window.setTimeout(function(){
+					enemy1attackStartX=enemy1StartX-20;
+	     			enemy1attackStartY=enemy1StartY; 
+	     			enemy1fight();
+	     			round1(enemyalive);
+
+	     		},5000);	     		
+	     	}
+
+
+     		function enemy1fight(){
+     			window.setTimeout(function(){
+     			enemy1attackStartXold=enemy1attackStartX;
+     			enemy1attackStartYold=enemy1attackStartY;
+     			enemy1attackStartX=enemy1attackStartX-1;
+
+     			var PlayerStartattackX=PlayerStartX-enemy1width;
+     			var PlayerStartattackY=PlayerStartY+enemy1height;
+
+     			//if(enemy1attackStartX>PlayerStartX+playerwidth){
+     			if(enemy1attackStartX<=leftBound){
+
+     			}
+
+     			else if(enemy1attackStartX<PlayerStartattackX||enemy1attackStartX>PlayerStartattackX+playerattackboundX1||enemy1attackStartY<PlayerStartattackY||enemy1attackStartY>PlayerStartattackY+playerattackboundY1){
+				ctx.drawImage(background,enemy1attackStartXold,enemy1attackStartYold,20,18,enemy1attackStartXold,enemy1attackStartYold,20,18);//用背景蓋住 
+				ctx.drawImage(enemy1attack,enemy1attackStartX,enemy1attackStartY);					
+					enemy1fight();
+				}				
+				else{
+					health=health-1;					
+					document.getElementById("health").innerHTML=health;
+					//break;
+				}
+
+
+     			},3);    			
+     			
+     		}
+
+
+
+
+
 
      		player.onload=function(){
-     			ctx.drawImage(player,PlayerStartX,PlayerStartY);
+     			ctx.drawImage(player,PlayerStartX,PlayerStartY);     			
      		}
-     		function drawPlayer(){     			
-     				ctx.fillStyle="#FFFFFF";
-
-     				//ctx.fillRect(PlayerStartXOld,PlayerStartYOld,75,87); 		//圖片為65*87 75*83
-     				ctx.drawImage(background,0,0);     				
+     		function drawPlayer(){    				
+     				//ctx.drawImage(background,0,0);
+     				ctx.drawImage(background,PlayerStartXOld,PlayerStartYOld,playerwidth,playerheight,PlayerStartXOld,PlayerStartYOld,playerwidth,playerheight);//用背景蓋住 				
      				if(direction<5){     				
      				ctx.drawImage(player,PlayerStartX,PlayerStartY);
      				direction++;   
@@ -86,14 +158,59 @@
      		
      		function movePlayer(unit){        		
        			PlayerStartXOld=PlayerStartX;
+       			document.getElementById("score").innerHTML=PlayerStartXOld;       			
         		PlayerStartX += unit;
        			if(PlayerStartX < PlayerLeftBound) {
           			PlayerStartX = PlayerLeftBound;
        			}
        			else if(PlayerStartX > PlayerRightBound){
          			 PlayerStartX = PlayerRightBound;
-       			}       			
+       			} 
+       			document.getElementById("test").innerHTML=PlayerStartX;      			
        			drawPlayer();
+      		}
+
+      		var delay=30;
+      		var jumpdelay=15;
+      		var jumpheight=20;
+
+      		function jumpPlayer(i){      			
+      			
+      				
+
+      				window.setTimeout(function(){  
+      				    PlayerStartXOld=PlayerStartX;
+      					PlayerStartYOld=PlayerStartY;
+      				
+      					PlayerStartY=PlayerStartY-5;					
+      					ctx.drawImage(background,PlayerStartXOld,PlayerStartYOld,playerwidth,playerheight,PlayerStartXOld,PlayerStartYOld,playerwidth,playerheight);//用背景蓋住 			
+      					ctx.drawImage(player,PlayerStartX,PlayerStartY);
+      					if(--i){
+      						jumpPlayer(i);
+      					}      					
+      				},jumpdelay);
+      				if(i==1){
+      					downPlayer(jumpheight);
+      				}      				
+      		};
+
+      		function downPlayer(i){
+      				
+      				window.setTimeout(function(){
+      					PlayerStartXOld=PlayerStartX;
+      					PlayerStartYOld=PlayerStartY;
+      				
+      					PlayerStartY=PlayerStartY+5;
+      					ctx.drawImage(background,PlayerStartXOld,PlayerStartYOld,playerwidth,playerheight,PlayerStartXOld,PlayerStartYOld,playerwidth,playerheight);//用背景蓋住 
+      					ctx.drawImage(player,PlayerStartX,PlayerStartY);
+      					if(--i){
+      						downPlayer(i);
+      					}
+      					if(i==0){
+      						PlayerStartYOld=PlayerStartY;
+      					}
+      				},jumpdelay);
+
       		}
 
       		// 偵測鍵盤事件
@@ -105,13 +222,22 @@
           			case 39:  // 向右
             			movePlayer(unit);            			
             			break;
+            		case 38:  //跳
+            			jumpPlayer(jumpheight);            			
+            			break;
         		}
      		};
 
 
-			drawPlayer();
+			
+
 			drawWall();
+			round1(enemyalive);
+			
+			
 		</script>
 		<!-- <img src="player.jpg"> -->
+
+		
 	</body>
 </html>
