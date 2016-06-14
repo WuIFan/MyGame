@@ -13,9 +13,15 @@
 		</style>
 	</head>
 	<body>
+<<<<<<< HEAD
 		<div>score:<span id="score">0</span></div>
 		<div>Health:<span id="health">0</span></div>
 		<div>EnemyHealth:<span id="enemyhealth">0</span></div>		
+=======
+		<div>score:<span id="score">0</span>,<span id="test">0</span></div>
+		<div>Health:<span id="health">0</span></div>
+		<div>EnemyHealth:<span id="enemyhealth">0</span></div>
+>>>>>>> a97bb2f54df88c667a22aba17c2529f4833ad7db
 		<canvas id="MyCanvas" width="800" height="500"></canvas>
 		<script>
 			var c=document.getElementById("MyCanvas");
@@ -34,12 +40,17 @@
 			function drawWall(){
 				ctx.strokeStyle=wallColor;
 				ctx.lineWidth=wallBorder;
-				ctx.strokeRect(wallX,wallY,wallWidth,wallHeight);
+				//ctx.strokeRect(wallX,wallY,wallWidth,wallHeight);
 			}
 
 			//邊界
+<<<<<<< HEAD
 			var topBound = wallBorder+wallY+0.5;						//7.5
      		var bottomBound = wallHeight - wallBorder-35-87;		//368
+=======
+			var topBound = wallBorder+wallY;						//7.5
+     		var bottomBound = wallHeight - wallBorder-35-87;		//495
+>>>>>>> a97bb2f54df88c667a22aba17c2529f4833ad7db
       		var leftBound = wallX+wallBorder/2; 					//5
       		var rightBound = wallX + wallWidth - wallBorder/2;		//2.5+800-5-2.5=795
 
@@ -48,7 +59,11 @@
       		background.onload=function(){
       			ctx.drawImage(background,0,0);
       			ctx.drawImage(enemy1,enemy1StartX,enemy1StartY);
+<<<<<<< HEAD
       			ctx.drawImage(player,PlayerStartX,PlayerStartY);      			
+=======
+      			ctx.drawImage(player,PlayerStartX,PlayerStartY);
+>>>>>>> a97bb2f54df88c667a22aba17c2529f4833ad7db
       		}
 
       		var unit=10 //移動的單位
@@ -60,13 +75,20 @@
 			var playerbound=63;
      		var playerheight=97;
      		var PlayerStartX=50;
+<<<<<<< HEAD
      		var PlayerStartY=500-35-playerheight;					//465-97=368
+=======
+     		var PlayerStartY=500-35-playerheight;					//465-87=379
+>>>>>>> a97bb2f54df88c667a22aba17c2529f4833ad7db
      		var PlayerLeftBound=leftBound;							//5
      		var PlayerRightBound=rightBound-playerwidth;			//
      		var PlayerStartXOld=50;                              	//50,92
      		var PlayerStartYOld=500-35-playerheight;
+<<<<<<< HEAD
      		var score=1000000;
      		document.getElementById("score").innerHTML=score;	
+=======
+>>>>>>> a97bb2f54df88c667a22aba17c2529f4833ad7db
      		
      		var playerdie=new Image();	//171*141       (X-54,Y-44)
      		playerdie.src="playerdie.png";
@@ -84,8 +106,15 @@
      		var enemy1StartX=700;
      		var enemy1StartY=500-35-enemy1height;
      		
+<<<<<<< HEAD
      		enemy1.src="enemy1.png";     		
 
+=======
+     		enemy1.src="enemy1.png";
+     		enemy1.onload=function(){
+     			ctx.drawImage(enemy1,enemy1StartX,enemy1StartY);
+     		}
+>>>>>>> a97bb2f54df88c667a22aba17c2529f4833ad7db
 
      		var enemy1attack=new Image();//20*18
      		var enemy1attackwidth=20;
@@ -100,8 +129,13 @@
      		var enemy1attackStartXold=enemy1attackStartX;
      		var enemy1attackStartYold=enemy1attackStartY;
 
+<<<<<<< HEAD
      		var enemy1StartX1=enemy1StartX-enemy1attackwidth;       //第二個子彈
         	var enemy1StartY1=enemy1StartY;
+=======
+     		var enemy1StartX1=700;
+        	var enemy1StartY1=500-35-enemy1height;
+>>>>>>> a97bb2f54df88c667a22aba17c2529f4833ad7db
         	var enemy1attackStartX1=enemy1StartX1-enemy1attackwidth;
         	var enemy1attackStartY1=enemy1StartY1; 
         	var enemy1attackStartX1old=enemy1attackStartX1;
@@ -110,6 +144,7 @@
      		enemy1attack.src="enemy1attack.png";
      		
      		var enemyalive=10;
+<<<<<<< HEAD
      		var enemyhealth1=10;
      		var demage=1;     		
      		document.getElementById("enemyhealth").innerHTML=enemyalive;
@@ -144,10 +179,21 @@
 	     			
 	     			window.setTimeout(function(){	     			
 	     			enemyalive=enemyhealth1;					
+=======
+     		var enemyhealth1=10;     		
+     		document.getElementById("enemyhealth").innerHTML=enemyalive;
+
+     		function round1(enemyalive){
+	     		window.setTimeout(function(){
+	     			enemyalive=enemyhealth1;
+	     			//alert(enemyalive+"asd"+enemyhealth1);
+					
+>>>>>>> a97bb2f54df88c667a22aba17c2529f4833ad7db
 	     			if(enemyalive>0){
 						enemy1attackStartX=enemy1StartX-enemy1attackwidth;
 	     				enemy1attackStartY=enemy1StartY;
 	     				enemy1attackStartX1=enemy1StartX1-enemy1attackwidth;
+<<<<<<< HEAD
              			enemy1attackStartY1=enemy1StartY;             			
 	     				enemy1fight();
 	     				enemy1fight2();	     				
@@ -160,6 +206,16 @@
 	     			},4500);
 	     		}	
 	     	}
+=======
+             			enemy1attackStartY1=enemy1StartY1; 
+	     				enemy1fight();
+	     				enemy1fight2();     			
+	     				round1(enemyalive);
+	     			}
+	     			else{
+
+	     			}
+>>>>>>> a97bb2f54df88c667a22aba17c2529f4833ad7db
 
 	     	var enemy3attackStartX;
 	     	var enemy3attackStartY;
@@ -297,6 +353,7 @@
     	function enemy1fight3(attacktimes){
     		if(playeralive==1){
      			window.setTimeout(function(){
+<<<<<<< HEAD
 	     		var PlayerHitX=PlayerStartX+playerwidth;
 	     		var PlayerHitY=PlayerStartY+playerheight;     			
 	     		
@@ -361,6 +418,63 @@
     		   				
      		}	
      	}    
+=======
+     			enemy1attackStartXold=enemy1attackStartX;
+     			enemy1attackStartYold=enemy1attackStartY;
+     			enemy1attackStartX=enemy1attackStartX-1;
+
+     			var PlayerStartattackX=PlayerStartX-enemy1attackwidth;
+     			var PlayerStartattackY=PlayerStartY+enemy1attackheight;
+     			
+     			if(enemy1attackStartX<=leftBound){
+     				ctx.drawImage(background,enemy1attackStartXold,enemy1attackStartYold,enemy1attackwidth,enemy1attackheight,enemy1attackStartXold,enemy1attackStartYold,enemy1attackwidth,enemy1attackheight);     				
+     			}
+
+     			else if(enemy1attackStartX<PlayerStartattackX||enemy1attackStartX>PlayerStartattackX+playerattackboundX1||enemy1attackStartY<PlayerStartattackY||enemy1attackStartY>PlayerStartattackY+playerattackboundY1){
+				ctx.drawImage(background,enemy1attackStartXold,enemy1attackStartYold,enemy1attackwidth,enemy1attackheight,enemy1attackStartXold,enemy1attackStartYold,enemy1attackwidth,enemy1attackheight);//用背景蓋住 
+				ctx.drawImage(enemy1attack,enemy1attackStartX,enemy1attackStartY);					
+					enemy1fight();
+				}				
+				else{
+					ctx.drawImage(background,enemy1attackStartXold,enemy1attackStartYold,enemy1attackwidth,enemy1attackheight,enemy1attackStartXold,enemy1attackStartYold,enemy1attackwidth,enemy1attackheight);
+					health=health-1;					
+					document.getElementById("health").innerHTML=health;					
+				}
+
+
+     			},3);    			
+     			
+     		}
+     		function enemy1fight2(){
+		        window.setTimeout(function(){
+		        enemy1attackStartX1old=enemy1attackStartX1;
+		        enemy1attackStartY1old=enemy1attackStartY1;
+		        enemy1attackStartX1=enemy1attackStartX1-1;
+		        enemy1attackStartY1=enemy1attackStartY1-1;
+		        var PlayerStartattackX=PlayerStartX-enemy1attackwidth;
+		        var PlayerStartattackY=PlayerStartY+enemy1attackheight;
+		        
+		        if(enemy1attackStartY1<=topBound){
+		          ctx.drawImage(background,enemy1attackStartX1old,enemy1attackStartY1old,enemy1attackwidth,enemy1attackheight,enemy1attackStartX1old,enemy1attackStartY1old,enemy1attackwidth,enemy1attackheight);		          
+		        }
+
+		        else if(enemy1attackStartX1<PlayerStartattackX||enemy1attackStartX1>PlayerStartattackX+playerattackboundX1||enemy1attackStartY1<PlayerStartattackY||enemy1attackStartY1>PlayerStartattackY+playerattackboundY1){
+		        ctx.drawImage(background,enemy1attackStartX1old,enemy1attackStartY1old,enemy1attackwidth,enemy1attackheight,enemy1attackStartX1old,enemy1attackStartY1old,enemy1attackwidth,enemy1attackheight);//用背景蓋住 
+		        ctx.drawImage(enemy1attack,enemy1attackStartX1,enemy1attackStartY1);          
+		          enemy1fight2();
+		        }       
+		        else{
+		          ctx.drawImage(background,enemy1attackStartX1old,enemy1attackStartY1old,enemy1attackwidth,enemy1attackheight,enemy1attackStartX1old,enemy1attackStartY1old,enemy1attackwidth,enemy1attackheight);
+		          health=health-1;          
+		          document.getElementById("health").innerHTML=health;
+		          //break;
+		        }
+
+
+		        },3);         
+          
+        }
+>>>>>>> a97bb2f54df88c667a22aba17c2529f4833ad7db
 
 
 
@@ -381,6 +495,7 @@
      					if(direction==10){
      						direction=0;
      					} 
+<<<<<<< HEAD
      				} 
      				if(enemyhealth1>0){
      					ctx.drawImage(enemy1,enemy1StartX,enemy1StartY);
@@ -413,10 +528,33 @@
 	       			}	       			      			       			     			
 	       			drawPlayer();
        			} 
+=======
+     				} 	
+     				ctx.drawImage(enemy1,enemy1StartX,enemy1StartY);			
+     		}
+     		
+     		function movePlayer(unit){        		
+       			PlayerStartXOld=PlayerStartX;
+       			PlayerStartYOld=PlayerStartY;
+       			document.getElementById("score").innerHTML=PlayerStartXOld;       			
+        		PlayerStartX += unit;
+       			if(PlayerStartX < PlayerLeftBound) {
+          			PlayerStartX = PlayerLeftBound;          			
+       			}
+       			else if(PlayerStartX > PlayerRightBound){
+         			PlayerStartX = PlayerRightBound;
+       			} 
+       			else if((PlayerStartX<87+playerwidth/2||PlayerStartX>232-playerwidth/4)&&PlayerStartY==338-playerheight){       				
+       				downPlayer(jumpheight);       				
+       			}
+       			document.getElementById("test").innerHTML=PlayerStartX;       			       			     			
+       			drawPlayer();
+>>>>>>> a97bb2f54df88c667a22aba17c2529f4833ad7db
       		}
 
       		var delay=30;
       		var jumpdelay=7;
+<<<<<<< HEAD
       		var downdelay=30;
       		var jumpheight=30;
       		var jumpevent=1;
@@ -424,11 +562,20 @@
 
       		function jumpPlayer(i,t){ 
       			if(playeralive==1){     				
+=======
+      		var jumpheight=30;
+
+      		function jumpPlayer(i){      			
+      			
+      				
+
+>>>>>>> a97bb2f54df88c667a22aba17c2529f4833ad7db
       				window.setTimeout(function(){  
       				    PlayerStartXOldJ=PlayerStartX;
       					PlayerStartYOldJ=PlayerStartY;
       				
       					PlayerStartY=PlayerStartY-5;
+<<<<<<< HEAD
       					
       					if(PlayerStartY<=topBound){
       						PlayerStartY=topBound;      						
@@ -450,6 +597,20 @@
 	      					}	      					
 	      					if(--i){
 	      						jumpPlayer(i,t);
+=======
+      					if(PlayerStartY<=topBound){
+      						PlayerStartY=topBound;      						
+      						ctx.drawImage(background,PlayerStartXOld,PlayerStartYOld,playerwidth,playerheight,PlayerStartXOld,PlayerStartYOld,playerwidth,playerheight);//用背景蓋住 			
+	      					ctx.drawImage(player,PlayerStartX,PlayerStartY);
+      						downPlayer(jumpheight);
+      					}
+      					else{
+	      					ctx.drawImage(background,PlayerStartXOld,PlayerStartYOld,playerwidth,playerheight,PlayerStartXOld,PlayerStartYOld,playerwidth,playerheight);//用背景蓋住 			
+	      					ctx.drawImage(player,PlayerStartX,PlayerStartY);
+	      					ctx.drawImage(enemy1,enemy1StartX,enemy1StartY);
+	      					if(--i){
+	      						jumpPlayer(i);
+>>>>>>> a97bb2f54df88c667a22aba17c2529f4833ad7db
 	      					} 
       					} 
 
@@ -533,7 +694,38 @@
       				} 
       				 				
 
+<<<<<<< HEAD
       		}
+=======
+      		function downPlayer(i){
+      				
+      				window.setTimeout(function(){
+      					PlayerStartXOld=PlayerStartX;
+      					PlayerStartYOld=PlayerStartY;
+      				
+      					PlayerStartY=PlayerStartY+5;
+      					if(PlayerStartY>bottomBound){
+      						PlayerStartY=bottomBound;
+      					}
+      					else if(PlayerStartX>=87-playerwidth/2&&PlayerStartX<=232-playerwidth/4&&PlayerStartY>=338-playerheight){
+      						PlayerStartY=338-playerheight;
+      						ctx.drawImage(background,PlayerStartXOld,PlayerStartYOld,playerwidth,playerheight,PlayerStartXOld,PlayerStartYOld,playerwidth,playerheight);//用背景蓋住 
+	      					ctx.drawImage(player,PlayerStartX,PlayerStartY);
+      					}
+      					else{
+	      					ctx.drawImage(background,PlayerStartXOld,PlayerStartYOld,playerwidth,playerheight,PlayerStartXOld,PlayerStartYOld,playerwidth,playerheight);//用背景蓋住 
+	      					ctx.drawImage(player,PlayerStartX,PlayerStartY);
+	      					ctx.drawImage(enemy1,enemy1StartX,enemy1StartY);
+
+	      					if(--i){
+	      						downPlayer(i);
+	      					}
+	      					if(i==0){
+	      						PlayerStartYOld=PlayerStartY;
+	      					}
+      					}
+      				},jumpdelay);
+>>>>>>> a97bb2f54df88c667a22aba17c2529f4833ad7db
 
       		var PlayerA=new Image();
       		PlayerA.src="playerattack.png";
@@ -665,7 +857,40 @@
 	      			}	      		
       		}
 
+      		var PlayerA=new Image();
+      		PlayerA.src="playerattack.png";
+      		var attackmotion=1;
+      		function PlayerAttack(attackmotion){
+					PlayerStartXOld=PlayerStartX;
+	      			PlayerStartYOld=PlayerStartY;
+	      			ctx.drawImage(background,PlayerStartXOld,PlayerStartYOld,playerwidth,playerheight,PlayerStartXOld,PlayerStartYOld,playerwidth,playerheight);//用背景蓋住 
+	      			ctx.drawImage(PlayerA,PlayerStartX,PlayerStartY);//攻擊圖
+	      			ctx.drawImage(enemy1,enemy1StartX,enemy1StartY);
+	      			attackmotion--;	      			
+	      			if(attackmotion==0){
+						if(PlayerStartX+playerwidth>enemy1StartX&&PlayerStartX+playerwidth<enemy1StartX+enemy1width&&PlayerStartY<enemy1StartY&&PlayerStartY>enemy1StartY-enemy1height){	//打到怪物
+      						enemyhealth1--;
+      						
+      						document.getElementById("enemyhealth").innerHTML=enemyhealth1;		      						      						
+      					}
+
+						window.setTimeout(function(){
+							
+	      					PlayerAttack();
+	      				},1000);
+      					
+	      			}
+	      			else{
+	      				ctx.drawImage(background,PlayerStartXOld,PlayerStartYOld,playerwidth,playerheight,PlayerStartXOld,PlayerStartYOld,playerwidth,playerheight);//用背景蓋住
+	      				
+	      				drawPlayer();
+	      				ctx.drawImage(enemy1,enemy1StartX,enemy1StartY);
+	      				attackmotion=1;
+	      			}
+      			}
+
       		// 偵測鍵盤事件
+<<<<<<< HEAD
       		var twokey=0// 左->1 右->2 跳->3 左跳->4 右跳->5 
       		window.onkeyup=function(event){
       			if(event.keyCode==37){// 向左
@@ -754,6 +979,41 @@
 	        	}
 
      		};		
+=======
+			window.onkeydown = function(event){
+        		switch(event.keyCode){
+          			case 37:  // 向左
+            			movePlayer(-unit);
+           				break;
+          			case 39:  // 向右
+            			movePlayer(unit);            			
+            			break;
+            		case 38:  //跳
+            			jumpPlayer(jumpheight);            			
+            			break;
+            		case 65:
+            			PlayerAttack(attackmotion);
+            			break;
+        		}
+        		// if(event.keyCode==37){
+        		// 	movePlayer(-unit);
+        		// 	jumpPlayer(jumpheight);
+        		// }
+        		// else if(event.keyCode==39){
+        		// 	movePlayer(unit);
+        		// }
+        		// if(event.keyCode==38){
+        		// 	jumpPlayer(jumpheight); 
+        		// }
+        		// if(event.keyCode==65){
+        		// 	PlayerAttack(attackmotion);
+        		// }
+
+     		};
+
+
+			
+>>>>>>> a97bb2f54df88c667a22aba17c2529f4833ad7db
 
 			drawWall();
 			alert("第一關!\nFight!!!");
