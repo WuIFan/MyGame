@@ -386,7 +386,13 @@
      					ctx.drawImage(enemy1,enemy1StartX,enemy1StartY);
      				}
      			}     							
-     		}     		
+     		}
+
+     		// function drawEnemy(){
+     		// 	ctx.drawImage(background,enemy1StartX,enemy1StartY,enemy1width,enemy1height,enemy1StartX,enemy1StartY,enemy1width,enemy1height);//用背景蓋住
+     		// 	drawPlayer();
+     		// 	ctx.drawImage(enemy1,enemy1StartX,enemy1StartY);
+     		// }
      		
      		function movePlayer(unit){ 
      			if(playeralive==1){      		
@@ -601,7 +607,7 @@
 							     			attackdamage=3;
 							     			enemyalive=enemyhealth1;											
 											roundnum++;
-											alert("第二關!\n攻擊力上升1!");
+											alert("第二關!\n攻擊力上升2!");
 											ctx.drawImage(background,PlayerStartX,PlayerStartY,playerwidth,playerheight,PlayerStartX,PlayerStartY,playerwidth,playerheight);
 			     							drawPlayer();
 			     							
